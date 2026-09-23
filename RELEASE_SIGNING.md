@@ -63,8 +63,8 @@ release.keyPassword=你的密钥密码
 ## 四、发布到 GitHub Releases
 
 1. 在 GitHub 仓库页面点右侧的 **Releases → Draft a new release**。
-2. **Choose a tag** 填 `v0.32`（与 `versionName` 保持一致，前缀 `v`）。
-3. 标题填 `DPI 工坊 0.32`，说明写这次改了什么（可以直接抄 [CHANGELOG.md](CHANGELOG.md)）。
+2. **Choose a tag** 填 `v1.0`（与 `versionName` 保持一致，前缀 `v`）。
+3. 标题填 `DPI 工坊 1.0`，说明写这次改了什么（可以直接抄 [CHANGELOG.md](CHANGELOG.md)）。
 4. 把 `app/build/outputs/apk/release/` 里的 APK 拖进附件区。
 5. 点 **Publish release**。
 

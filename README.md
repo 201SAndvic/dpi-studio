@@ -4,7 +4,7 @@
 为车机、手表与方屏设备调整应用显示密度的 Android 工具
 
 
-[![Version](https://img.shields.io/badge/Version-0.32-orange?style=flat-square)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/Version-1.0-orange?style=flat-square)](CHANGELOG.md)
 [![Platform](https://img.shields.io/badge/Platform-Android%208.0%2B-green?style=flat-square)](https://developer.android.com)
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.4-purple?style=flat-square)](https://kotlinlang.org)
 [![Compose](https://img.shields.io/badge/UI-Jetpack%20Compose-blue?style=flat-square)](https://developer.android.com/jetpack/compose)
@@ -101,8 +101,8 @@ DPI 工坊自己也会遇到这个问题，因此：
 
 ## 下载与反馈
 
-- **安装包**：前往本仓库的 [Releases](https://github.com/GITHUB_USER/dpi-studio/releases) 页面下载最新的 APK
-- **问题与建议**：欢迎提交 [Issue](https://github.com/GITHUB_USER/dpi-studio/issues)，附上「设置 → 保存当前环境」生成的 zip 会很有帮助
+- **安装包**：前往本仓库的 [Releases](https://github.com/201SAndvic/dpi-studio/releases) 页面下载最新的 APK
+- **问题与建议**：欢迎提交 [Issue](https://github.com/201SAndvic/dpi-studio/issues)，附上「设置 → 保存当前环境」生成的 zip 会很有帮助
 - **源码**：本仓库。欢迎 Star、Fork 与 PR
 
 > 安装新版本前**不需要**卸载旧版。`applicationId` 保持 `com.appconfig.injector` 不变，
@@ -246,6 +246,9 @@ SDK 路径读 `local.properties`（可参考 `local.properties.example`）。
 | **小改**（修问题、微调） | 在小改序列里递增 | `0.1` → **`0.11`** → **`0.12`** → `0.13` |
 
 改版本只动一处：`app/build.gradle.kts` 里的 `versionName` 与 `versionCode`。
+
+> 当前的 **1.0** 是开源首发的里程碑版本，同时也是版本号规则里的上限。
+> 之后的小改建议在 1.0 系列里递增（`1.01`、`1.02`…），保持「永不超过 1.0」这条规则。
 
 ---
 

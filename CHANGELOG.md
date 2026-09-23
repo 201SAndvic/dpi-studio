@@ -5,6 +5,18 @@
 
 ---
 
+## 1.0
+
+**开源首发版本**
+
+- 项目整体以 **GPL-3.0** 开源（因为内置了 GPL-3.0 授权的 LSPatch 引擎）
+- 仓库更名并对外发布：<https://github.com/201SAndvic/dpi-studio>
+- 补充 README、THIRD-PARTY.md 第三方组件清单、RELEASE_SIGNING.md 签名与发版说明
+- 签名材料从 `app/build.gradle.kts` 移到不进版本控制的 `local.properties`；
+  未配置密钥时自动回退为 Debug 签名，保证任何人 clone 后都能编译
+- 「设置 → 关于 → 在 GitHub 查看源码」接上真实仓库地址
+- 功能与本版本号无关，与 0.32 完全一致
+
 ## 0.32
 
 - 「保存当前环境」生成的 zip 里加入 `日志.txt`

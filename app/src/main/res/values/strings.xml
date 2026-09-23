@@ -162,7 +162,7 @@
     <string name="about_github_desc">跳转开源仓库查看源码与说明</string>
     <string name="about_license">开源许可</string>
     <string name="about_license_desc">内置组件所用的开源协议</string>
-    <string name="about_license_text">本应用内置以下开源组件：\n\n· LSPatch（JingMatrix/LSPatch 分支）— GNU GPL v3\n· app_config（应用配置）— MPL-2.0\n\nLSPatch 源码：https://github.com/JingMatrix/LSPatch\napp_config 源码：https://github.com/jiwangyihao/app_config</string>
+<string name="about_license_text">本应用整体以 GNU GPL v3 开源。\n\n内置的开源组件：\n· LSPatch（JingMatrix/LSPatch 分支）— GNU GPL v3\n· app_config（应用配置）— MPL-2.0\n\n本应用源码：https://github.com/201SAndvic/dpi-studio\nLSPatch 源码：https://github.com/JingMatrix/LSPatch\napp_config 源码：https://github.com/jiwangyihao/app_config</string>
     <string name="about_engine">内置引擎</string>
     <string name="about_module">内置模块</string>
     <string name="about_module_value">app_config（已打补丁）</string>
@@ -171,7 +171,8 @@
     <string name="about_ui">界面风格</string>
     <string name="about_ui_value">Miuix · HyperOS 风格</string>
     <string name="about_howto">用法：在「注入」页选择目标 APK、设置最小宽度，点开始注入，完成后保存成品 APK 并安装。</string>
-    <string name="support_pending">尚未配置跳转</string>
+<string name="support_pending">尚未配置跳转</string>
+<string name="repo_url">https://github.com/201SAndvic/dpi-studio</string>
 
     <!-- 首次引导 -->
     <string name="onboard_size_title">界面显示尺寸</string>

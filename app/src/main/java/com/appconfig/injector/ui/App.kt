@@ -367,7 +367,7 @@ fun DpiStudioApp(activity: ComponentActivity) {
                 appVersion = appVersionName(ctx),
                 selfMinWidth = state.selfMinWidth,
                 onBack = { showAbout = false },
-                onGithub = { toast(ctx.getString(R.string.support_pending)) },
+                onGithub = { openUrl(ctx, ctx.getString(R.string.repo_url)) },
             )
 
             Route.Main -> {
