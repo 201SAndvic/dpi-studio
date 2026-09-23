@@ -1,0 +1,16 @@
+# 把这个文件复制成 local.properties（不要提交到仓库），然后按你机器的实际情况修改。
+
+# Android SDK 路径。Windows 注意用正斜杠，或者把反斜杠写成两个。
+sdk.dir=C:/Users/你的用户名/AppData/Local/Android/Sdk
+
+# ---------------------------------------------------------------------------
+# 可选：Release 签名配置
+#
+# 这四行不写全（或指向的密钥库不存在）时，assembleRelease 会自动回退成
+# Debug 签名，仍然能编译出可安装的 APK，只是不能用于正式发版。
+# 详细步骤见 RELEASE_SIGNING.md。
+# ---------------------------------------------------------------------------
+# release.storeFile=app/keystore/dpi-studio.jks
+# release.storePassword=你的密钥库密码
+# release.keyAlias=dpistudio
+# release.keyPassword=你的密钥密码

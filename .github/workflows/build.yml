@@ -1,0 +1,40 @@
+name: Build
+
+# 默认只支持手动触发，避免每次提交都跑一遍。
+# 想让它自动跑，把下面的 push / pull_request 两段取消注释即可。
+on:
+  workflow_dispatch:
+  # push:
+  #   branches: [ main ]
+  # pull_request:
+  #   branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      # 没有配置 release 签名时会自动回退成 Debug 签名，所以这里不需要额外密钥。
+      - name: Assemble
+        run: ./gradlew --no-daemon assembleDebug assembleRelease
+
+      - name: Upload APKs
+        uses: actions/upload-artifact@v4
+        with:
+          name: apks
+          path: app/build/outputs/apk/**/*.apk
+          if-no-files-found: warn

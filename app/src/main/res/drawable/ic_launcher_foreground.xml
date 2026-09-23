@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!--
+      图形含义：一块「屏幕」里放了一条带滑块的调节轨道。
+      屏幕为实心白、滑块为淡蓝，与参考图标「白形状 + 淡蓝底」的风格一致。
+    -->
+
+    <!-- 屏幕（实心） -->
+    <path
+        android:pathData="M37,36 h34 a10,10 0 0 1 10,10 v16 a10,10 0 0 1 -10,10 h-34 a10,10 0 0 1 -10,-10 v-16 a10,10 0 0 1 10,-10 z"
+        android:fillColor="#FFFFFFFF" />
+
+    <!-- 调节轨道 -->
+    <path
+        android:pathData="M38,54 h24"
+        android:strokeWidth="4.5"
+        android:strokeLineCap="round"
+        android:strokeColor="#FF8FB2F0" />
+
+    <!-- 滑块 -->
+    <path
+        android:pathData="M64,54 m-6,0 a6,6 0 1,0 12,0 a6,6 0 1,0 -12,0 z"
+        android:fillColor="#FF8FB2F0" />
+</vector>

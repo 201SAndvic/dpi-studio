@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DPI 工坊</string>
+
+    <!-- 底部导航 -->
+    <string name="nav_home">主页</string>
+    <string name="nav_inject">注入</string>
+    <string name="nav_history">记录</string>
+    <string name="nav_settings">设置</string>
+
+    <string name="title_home">DPI 工坊</string>
+    <string name="title_inject">注入</string>
+    <string name="title_history">注入记录</string>
+    <string name="title_settings">设置</string>
+
+    <!-- 主页 -->
+    <string name="hero_display_area">应用显示区域</string>
+    <string name="hero_records">注入记录</string>
+    <string name="hero_engine">内置引擎</string>
+    <string name="section_device">设备信息</string>
+    <string name="section_display">屏幕信息</string>
+    <string name="no_display">未获取到屏幕信息</string>
+    <string name="display_show">显示</string>
+    <string name="display_shot">截图</string>
+    <string name="display_rename">重命名</string>
+    <string name="display_rename_hint">屏幕名称</string>
+    <string name="display_rename_reset">恢复默认</string>
+    <string name="display_show_tip">已在这块屏幕上显示提示</string>
+    <string name="display_show_failed">无法在 displayId %1$d 上显示：%2$s</string>
+    <string name="display_shot_saving">正在截取该屏幕…</string>
+    <string name="display_shot_done">截图已保存：%1$s</string>
+    <string name="display_shot_failed">截图失败：%1$s</string>
+    <string name="display_shot_need_access">截取指定屏幕需要权限，二选一：\n· 设备已 root：直接可用\n· 否则请开启「DPI 工坊」的无障碍服务后再试</string>
+    <string name="display_shot_go_access">去开启无障碍</string>
+    <string name="display_shot_try_anyway">仍然尝试截图</string>
+    <string name="display_menu_summary">%1$s · %2$s</string>
+    <string name="identify_title">这块屏幕是</string>
+    <string name="identify_tap_close">点按任意位置关闭（%1$d 秒后自动关闭）</string>
+
+    <string name="label_android">系统版本</string>
+    <string name="label_sdk">API 级别</string>
+    <string name="label_model">设备型号</string>
+    <string name="label_brand">制造商</string>
+    <string name="label_abi">处理器架构</string>
+    <string name="label_app_version">应用版本</string>
+
+    <string name="display_primary">主屏</string>
+    <string name="display_secondary">副屏</string>
+    <string name="display_n">屏幕 %1$d</string>
+    <string name="display_resolution">分辨率</string>
+    <string name="display_density">密度</string>
+    <string name="display_inches">物理尺寸</string>
+    <string name="display_dp">应用显示区域</string>
+
+    <!-- 注入页 -->
+    <string name="inject_target">目标应用</string>
+    <string name="inject_target_none">未选择</string>
+    <string name="inject_pick">选择目标 APK</string>
+    <string name="inject_pick_desc">选择一个完整的 .apk 文件</string>
+    <string name="inject_size">尺寸设置</string>
+    <string name="inject_min_width">最小宽度 minWidth</string>
+    <string name="inject_min_width_helper">数值越大，界面元素越小</string>
+    <string name="inject_quick">常用值</string>
+    <string name="inject_presets">参数预设</string>
+    <string name="inject_advanced">高级参数</string>
+    <string name="inject_expand">展开</string>
+    <string name="inject_collapse">收起</string>
+    <string name="inject_sw_fake_app_list">模拟「读取应用列表」权限</string>
+    <string name="inject_sw_fake_app_list_desc">在没有该权限的设备上伪造应用列表</string>
+    <string name="inject_sw_round">开启圆屏适配</string>
+    <string name="inject_sw_round_desc">按容器裁剪界面，两侧会留出空白</string>
+    <string name="inject_sw_force_round">强制圆屏适配</string>
+    <string name="inject_sw_force_round_desc">屏幕比例不在 0.9~1.1 之间时也启用</string>
+    <string name="inject_round_size">容器大小 roundSize</string>
+    <string name="inject_round_ratio">容器比例 roundRatio（高÷宽）</string>
+    <string name="inject_h_offset">水平偏移 horizontalOffset</string>
+    <string name="inject_v_offset">垂直偏移 verticalOffset</string>
+    <string name="inject_bg_color">背景颜色 backgroundColor</string>
+    <string name="inject_bg_alpha">背景透明度 backgroundAlpha（-1 不设置）</string>
+    <string name="inject_toast">启动提示</string>
+    <string name="inject_options">注入选项</string>
+    <string name="inject_sig_bypass">签名绕过等级</string>
+    <string name="inject_sig_bypass_desc">应用校验自身签名时设为 2；0 表示关闭</string>
+    <string name="inject_dex">注入原始 dex</string>
+    <string name="inject_dex_desc">含独立进程的应用无法启动时开启</string>
+    <string name="inject_start">开始注入</string>
+    <string name="inject_save">保存成品 APK</string>
+    <string name="inject_save_desc">选择保存位置后导出</string>
+    <string name="save_to_downloads">保存到下载目录</string>
+    <string name="save_pick_folder">选择其他文件夹…</string>
+    <string name="save_done">已保存：%1$s</string>
+    <string name="save_failed">保存失败：%1$s</string>
+    <string name="inject_export_xml">导出当前 config.xml</string>
+    <string name="inject_export_xml_desc">保存为独立配置文件</string>
+    <string name="inject_status_idle">就绪</string>
+    <string name="inject_working">正在注入…</string>
+    <string name="inject_done">注入完成</string>
+
+    <!-- 当前参数 / 预设 -->
+    <string name="current_config">当前参数</string>
+    <string name="cfg_min_width">最小宽度</string>
+    <string name="cfg_round">圆屏适配</string>
+    <string name="cfg_sig_bypass">签名绕过等级</string>
+    <string name="cfg_inject_dex">注入原始 dex</string>
+    <string name="value_on">开启</string>
+    <string name="value_off">关闭</string>
+    <string name="preset_builtin">内置预设</string>
+    <string name="preset_mine">自定义预设</string>
+    <string name="preset_empty">暂无自定义预设</string>
+    <string name="preset_save">将当前参数保存为预设</string>
+    <string name="preset_apply">套用</string>
+    <string name="preset_delete">删除</string>
+    <string name="preset_name">预设名称</string>
+    <string name="preset_name_empty">名称不能为空</string>
+    <string name="preset_saved">已保存预设</string>
+    <string name="preset_applied">已套用</string>
+    <string name="preset_car">车机 · 3:4 方屏</string>
+    <string name="preset_phone">手机 · 铺满无黑边</string>
+    <string name="preset_tablet">平板 · 常规方屏</string>
+    <string name="preset_default">默认值</string>
+
+    <!-- 记录 -->
+    <string name="history_empty">暂无记录</string>
+    <string name="history_clear">清空记录</string>
+    <string name="history_clear_confirm">确定清空全部注入记录？</string>
+    <string name="history_reuse">套用这些参数</string>
+    <string name="history_ok">成功</string>
+    <string name="history_fail">失败</string>
+    <string name="history_error">失败原因</string>
+    <string name="history_unknown_app">未知应用</string>
+
+    <!-- 设置 -->
+    <string name="settings_logs">日志</string>
+    <string name="settings_logs_desc">查看、复制或保存注入日志</string>
+    <string name="settings_backup">备份与恢复</string>
+    <string name="settings_backup_desc">备份或恢复预设、参数与注入记录</string>
+    <string name="settings_about">关于</string>
+    <string name="settings_about_desc">版本与内置组件信息</string>
+    <string name="settings_log_view">查看日志</string>
+    <string name="settings_log_copy">复制日志</string>
+    <string name="settings_log_save">保存到文件</string>
+    <string name="settings_log_clear">清空日志</string>
+    <string name="settings_log_clear_confirm">确定清空日志？</string>
+    <string name="settings_log_copied">日志已复制到剪贴板</string>
+    <string name="settings_log_cleared">日志已清空</string>
+    <string name="settings_log_empty">日志为空</string>
+    <string name="backup_export">导出备份文件</string>
+    <string name="backup_import">从备份文件恢复</string>
+    <string name="backup_exported">备份已导出</string>
+    <string name="backup_imported">已从备份恢复</string>
+    <string name="backup_failed">备份文件无法解析</string>
+    <string name="backup_confirm_import">恢复会覆盖当前的参数、预设与记录，确定继续？</string>
+
+    <string name="close">关闭</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+
+    <!-- 关于页 -->
+    <string name="about_title">关于</string>
+    <string name="about_back">返回</string>
+    <string name="about_github">在 GitHub 查看源码</string>
+    <string name="about_github_desc">跳转开源仓库查看源码与说明</string>
+    <string name="about_license">开源许可</string>
+    <string name="about_license_desc">内置组件所用的开源协议</string>
+    <string name="about_license_text">本应用内置以下开源组件：\n\n· LSPatch（JingMatrix/LSPatch 分支）— GNU GPL v3\n· app_config（应用配置）— MPL-2.0\n\nLSPatch 源码：https://github.com/JingMatrix/LSPatch\napp_config 源码：https://github.com/jiwangyihao/app_config</string>
+    <string name="about_engine">内置引擎</string>
+    <string name="about_module">内置模块</string>
+    <string name="about_module_value">app_config（已打补丁）</string>
+    <string name="about_sign">签名</string>
+    <string name="about_sign_value">与 LSPatch 官方管理器同一密钥</string>
+    <string name="about_ui">界面风格</string>
+    <string name="about_ui_value">Miuix · HyperOS 风格</string>
+    <string name="about_howto">用法：在「注入」页选择目标 APK、设置最小宽度，点开始注入，完成后保存成品 APK 并安装。</string>
+    <string name="support_pending">尚未配置跳转</string>
+
+    <!-- 首次引导 -->
+    <string name="onboard_size_title">界面显示尺寸</string>
+    <string name="onboard_size_desc">部分车机上报的屏幕密度与实际不符，界面元素会明显偏小。\n可在下方调整本应用界面的显示尺寸，完成引导后仍可在「设置」中修改。</string>
+    <string name="onboard_size_hint">该数值将同步作为「注入」页的推荐配置。</string>
+    <string name="onboard_current_screen">当前屏幕 %1$d × %2$d px，上报 %3$d dpi，等效宽度 %4$d dp</string>
+    <string name="onboard_value">界面宽度 %1$d dp</string>
+    <string name="onboard_recommend">推荐 %1$d dp</string>
+    <string name="onboard_follow_system">跟随系统</string>
+    <string name="onboard_done_title">一切就绪</string>
+    <string name="onboard_done_desc">完成引导后，可随时在「设置」中调整界面尺寸。</string>
+    <string name="onboard_prev">上一步</string>
+    <string name="onboard_next">下一步</string>
+    <string name="onboard_start">开始使用</string>
+
+    <!-- 本机显示尺寸（设置里） -->
+    <string name="settings_self_size">本机显示尺寸</string>
+    <string name="settings_self_size_desc">调整本应用界面大小，适配车机屏幕</string>
+    <string name="settings_self_size_value">当前 %1$d dp</string>
+    <string name="settings_self_size_follow">跟随系统</string>
+
+    <!-- 保存当前环境 -->
+    <string name="settings_snapshot">保存当前环境</string>
+    <string name="settings_snapshot_desc">屏幕数量、分辨率、dpi、所在屏幕与截图，打包存到下载目录</string>
+    <string name="snapshot_working">正在收集环境信息…</string>
+    <string name="snapshot_saved">已保存到下载目录：%1$s</string>
+    <string name="snapshot_failed">保存失败：%1$s</string>
+    <string name="snapshot_need_permission">需要存储权限才能写入下载目录</string>
+
+    <!-- 内置文件浏览器 -->
+    <string name="picker_title">选择 APK</string>
+    <string name="picker_file_title">选择文件</string>
+    <string name="picker_folder_title">选择文件夹</string>
+    <string name="picker_use_folder">保存到此文件夹</string>
+    <string name="picker_folder_empty">此目录下没有子文件夹，可直接保存到当前目录</string>
+    <string name="picker_up">上一级</string>
+    <string name="picker_empty">该目录下未找到 APK 文件</string>
+    <string name="picker_denied">缺少存储读取权限，无法列出文件</string>
+    <string name="picker_grant">前往授权</string>
+    <string name="picker_system">用系统文件选择器</string>
+    <string name="picker_loading">正在读取…</string>
+    <string name="picker_downloads">下载</string>
+    <string name="picker_root">根目录</string>
+    <string name="picker_app_dir">应用目录</string>
+    <string name="picker_unreadable">无法读取</string>
+    <string name="picker_restart">已获得权限，正在重启应用…</string>
+    <string name="picker_access_ok">所有文件访问：已开启</string>
+    <string name="picker_access_no">所有文件访问：未开启</string>
+    <string name="apk_read_denied">无法读取该文件：系统存储层拒绝访问，大小约 %1$d MB。\n这份副本多半不完整（其它应用同样读不到）。\n建议用电脑（MTP / adb）重传，或直接在车机上下载后再试。</string>
+
+    <!-- 推荐注入配置 -->
+    <string name="inject_recommend">推荐注入配置</string>
+    <string name="inject_recommend_desc">按本机显示尺寸 %1$d dp 推荐</string>
+    <string name="inject_recommend_none">请在「设置」中设置本机显示尺寸</string>
+</resources>

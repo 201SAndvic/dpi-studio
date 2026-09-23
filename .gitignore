@@ -1,0 +1,62 @@
+# Gradle 缓存与构建目录
+.gradle/
+build/
+app/build/
+
+# Kotlin 编译器缓存
+.kotlin/
+
+# NDK 构建产物
+.cxx/
+.externalNativeBuild/
+
+# IDE 配置
+.idea/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+.vscode/
+*.code-workspace
+
+# 本地环境属性（含 SDK 路径与 release 签名材料，见 RELEASE_SIGNING.md）
+local.properties
+
+# 签名材料，绝不进仓库
+*.jks
+*.keystore
+*.keystore.bak
+*.pepk
+*.p12
+app/keystore/
+
+# 编译产物
+*.apk
+*.aab
+*.aar
+
+# 反编译 / 分析用的临时目录
+captures/
+*.hprof
+*.dex
+*.smali
+*.log
+
+# 例外：内置引擎是编译必需的输入，必须进仓库
+!app/src/main/assets/module.apk
+!app/src/main/assets/lspatch/*.dex
+!gradle/wrapper/gradle-wrapper.jar
+
+# 本仓库里体积很大的本地产物目录（发版请走 GitHub Releases）
+输出/
+历史版本/
+截图参考/
+shots/
+dev/shots/
+
+# 系统垃圾文件
+.DS_Store
+Thumbs.db
+desktop.ini
