@@ -28,7 +28,7 @@
 | [JingMatrix/LSPatch](https://github.com/JingMatrix/LSPatch) | v1.2（487） | APK 注入引擎 | GPL-3.0 | `app/libs/lspatch-classes.jar`、`app/src/main/assets/lspatch/` |
 | [jiwangyihao/app_config](https://github.com/jiwangyihao/app_config) | v1.2 | 注入模块（运行时改 density / minWidth） | MPL-2.0 | `app/src/main/assets/module.apk` |
 | [HighCapable/YukiHookAPI](https://github.com/HighCapable/YukiHookAPI) | 随模块分发 | 模块侧 Hook 框架 | Apache-2.0 | 已编译进 `module.apk` |
-| [compose-miuix-ui/miuix](https://github.com/compose-miuix-ui/miuix) | 0.9.4 | HyperOS 风格 Compose 组件库 | Apache-2.0 | Gradle 依赖 |
+| [compose-miuix-ui/miuix](https://github.com/compose-miuix-ui/miuix) | 0.9.4 | Compose 组件库 | Apache-2.0 | Gradle 依赖 |
 | AndroidX（Core / Activity / Lifecycle） | — | 基础框架 | Apache-2.0 | Gradle 依赖 |
 | [Jetpack Compose](https://developer.android.com/jetpack/compose) | — | 声明式界面框架 | Apache-2.0 | Gradle 依赖 |
 
