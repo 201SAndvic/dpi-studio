@@ -105,9 +105,13 @@ private fun DisplayCard(
                 summary = listOf(resolution, dpi).filter { it.isNotEmpty() }.joinToString(" · "),
                 onClick = { menuTarget = display },
             )
-            display.items.forEach { item ->
-                InfoRow(title = item.label, value = item.value)
-            }
+            // 分辨率与密度已经写在标题行里了，这里不再重复一行
+            display.items
+                .filterNot { it.label == ctx.getString(R.string.display_resolution) }
+                .filterNot { it.label == ctx.getString(R.string.display_density) }
+                .forEach { item ->
+                    InfoRow(title = item.label, value = item.value)
+                }
         }
     }
 

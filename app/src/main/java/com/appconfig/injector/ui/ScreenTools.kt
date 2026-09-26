@@ -4,6 +4,7 @@ import android.accessibilityservice.AccessibilityService
 import android.view.accessibility.AccessibilityWindowInfo
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.Rect
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
@@ -192,13 +193,43 @@ object ScreenTools {
      * 都拿不到就返回 null，文件名里就不带应用名。
      */
     private fun foregroundAppLabel(ctx: Context, displayId: Int): String? {
-        val pkg = packageViaAccessibility(displayId) ?: packageViaRoot(displayId)
-        if (pkg.isNullOrBlank()) return null
-        return try {
-            val pm = ctx.packageManager
-            pm.getApplicationLabel(pm.getApplicationInfo(pkg, 0)).toString()
+        val fromAccessibility = packageViaAccessibility(displayId)
+        val pkg = fromAccessibility ?: packageViaRoot(displayId)
+        if (pkg.isNullOrBlank()) {
+            Logs.append("[D] 前台应用：display=$displayId 未取到包名")
+            return null
+        }
+        val label = appLabel(ctx, pkg)
+        Logs.append(
+            "[D] 前台应用：display=$displayId 来源=${if (fromAccessibility != null) "无障碍" else "root"}" +
+                " 包名=$pkg 显示名=${label ?: "(取不到，退回包名)"}"
+        )
+        return label ?: pkg
+    }
+
+    /**
+     * 取应用的显示名。
+     *
+     * Android 11 起有包可见性限制：没在清单里声明 queries 或 QUERY_ALL_PACKAGES 时，
+     * getApplicationInfo 会抛 NameNotFoundException，那样就只能拿到包名。
+     * 这里查不到就返回 null，由调用方决定怎么退化。
+     */
+    private fun appLabel(ctx: Context, pkg: String): String? {
+        val pm = ctx.packageManager
+        val info = try {
+            pm.getApplicationInfo(pkg, 0)
         } catch (_: Throwable) {
-            pkg
+            try {
+                pm.getInstalledApplications(0).firstOrNull { it.packageName == pkg }
+            } catch (_: Throwable) {
+                null
+            }
+        } ?: return null
+        return try {
+            pm.getApplicationLabel(info).toString()
+                .takeIf { it.isNotBlank() && it != pkg }
+        } catch (_: Throwable) {
+            null
         }
     }
 
@@ -217,13 +248,31 @@ object ScreenTools {
                 false
             }
         }
-        if (onDisplay.isEmpty()) return null
+        if (onDisplay.isEmpty()) {
+            val ids = windows.mapNotNull { w -> runCatching { w.displayId }.getOrNull() }
+                .distinct().sorted()
+            Logs.append(
+                "[D] 前台应用探测：display=$displayId 本屏没有无障碍窗口，现有窗口分布在屏幕 $ids"
+            )
+            return null
+        }
 
-        // 优先应用窗口，其次任意窗口，都按层级取最上面的
-        val target = onDisplay
-            .filter { it.type == AccessibilityWindowInfo.TYPE_APPLICATION }
-            .maxByOrNull { it.layer }
-            ?: onDisplay.maxByOrNull { it.layer }
+        // 同一块屏上可能同时有主界面和浮窗。只按层级挑会挑到角落里的小浮窗，
+        // 所以改成「占屏面积优先、层级次之」。
+        fun score(w: AccessibilityWindowInfo): Long {
+            val area = try {
+                val r = Rect()
+                w.getBoundsInScreen(r)
+                r.width().toLong() * r.height().toLong()
+            } catch (_: Throwable) {
+                0L
+            }
+            return area * 1000L + w.layer
+        }
+
+        val appWindows = onDisplay.filter { it.type == AccessibilityWindowInfo.TYPE_APPLICATION }
+        val target = (if (appWindows.isNotEmpty()) appWindows else onDisplay)
+            .maxByOrNull { score(it) }
 
         val pkg = try {
             target?.root?.packageName?.toString()
@@ -236,15 +285,83 @@ object ScreenTools {
         return pkg
     }
 
+    /** 包名/类名对，例如 com.example.app/.MainActivity。 */
+    private val pkgPattern = Regex("([A-Za-z0-9_]+(?:\\.[A-Za-z0-9_]+)+)/[A-Za-z0-9_.$]+")
+
     private fun packageViaRoot(displayId: Int): String? {
-        val text = runAsRoot("dumpsys window displays") ?: return null
-        // 在 "Display: mDisplayId=<id>" 这一段里找第一处 mCurrentFocus 的包名
-        val block = Regex(
-            "Display: mDisplayId=$displayId\\b([\\s\\S]*?)(?=\\n\\s*Display: mDisplayId=|\\z)"
-        ).find(text)?.groupValues?.get(1) ?: return null
-        return Regex("mCurrentFocus=Window\\{[^}]*?\\s+u\\d+\\s+([A-Za-z0-9_.]+)/")
-            .find(block)?.groupValues?.get(1)
+        val activityText = runAsRoot("dumpsys activity activities")
+        val displaysText = runAsRoot("dumpsys window displays")
+        val windowText = runAsRoot("dumpsys window")
+
+        // 1) Android 12 起 dumpsys activity activities 会按屏分段，里面有该屏当前 Activity
+        pkgInBlock(
+            text = activityText,
+            header = Regex("Display #$displayId\\b"),
+            next = Regex("\\n\\s*Display #\\d+\\b"),
+            markers = listOf("mResumedActivity", "topResumedActivity", "mFocusedApp"),
+        )?.let { return it }
+
+        // 2) 老一点的版本：dumpsys window displays 里每块屏有 mCurrentFocus
+        pkgInBlock(
+            text = displaysText,
+            header = Regex("Display: mDisplayId=$displayId\\b"),
+            next = Regex("\\n\\s*Display: mDisplayId=\\d+\\b"),
+            markers = listOf("mCurrentFocus", "mFocusedApp"),
+        )?.let { return it }
+
+        pkgInBlock(
+            text = windowText,
+            header = Regex("Display: mDisplayId=$displayId\\b"),
+            next = Regex("\\n\\s*Display: mDisplayId=\\d+\\b"),
+            markers = listOf("mCurrentFocus", "mFocusedApp"),
+        )?.let { return it }
+
+        // 3) 兜底：默认屏直接取全局焦点
+        if (displayId == 0 && windowText != null) {
+            pkgAfterMarker(windowText, listOf("mCurrentFocus", "mFocusedApp"))?.let { return it }
+        }
+
+        val all = listOf(activityText, displaysText, windowText).joinToString("\n") { it.orEmpty() }
+        Logs.append(
+            "[D] 前台应用探测：display=$displayId root 未解析出包名" +
+                "（dumpsys 里出现过的屏幕=${displayIdsIn(all)}，" +
+                "含 mCurrentFocus=${all.contains("mCurrentFocus")}）"
+        )
+        return null
     }
+
+    /** 切出某块屏的段落，再在段落里按标记取第一个包名。 */
+    private fun pkgInBlock(
+        text: String?,
+        header: Regex,
+        next: Regex,
+        markers: List<String>,
+    ): String? {
+        if (text.isNullOrBlank()) return null
+        val start = header.find(text) ?: return null
+        val rest = text.substring(start.range.last + 1)
+        val stop = next.find(rest)
+        val block = if (stop == null) rest else rest.substring(0, stop.range.first)
+        return pkgAfterMarker(block, markers)
+    }
+
+    private fun pkgAfterMarker(block: String, markers: List<String>): String? {
+        for (marker in markers) {
+            val idx = block.indexOf(marker)
+            if (idx < 0) continue
+            val tail = block.substring(idx, minOf(block.length, idx + 800))
+            val hit = pkgPattern.find(tail)?.groupValues?.get(1)
+            if (!hit.isNullOrBlank()) return hit
+        }
+        return null
+    }
+
+    private fun displayIdsIn(text: String): List<Int> =
+        Regex("(?:Display #|Display: mDisplayId=)(\\d+)").findAll(text)
+            .mapNotNull { it.groupValues[1].toIntOrNull() }
+            .distinct()
+            .sorted()
+            .toList()
 
     private fun runAsRoot(command: String): String? = try {
         val process = ProcessBuilder("su", "-c", command)

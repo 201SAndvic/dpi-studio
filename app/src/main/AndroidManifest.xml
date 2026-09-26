@@ -16,6 +16,21 @@
         android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
 
+    <!--
+      截图文件名里要写「这块屏当前前台应用」的名字。Android 11 起有包可见性限制，
+      没声明就查不到别的应用，getApplicationLabel 会抛异常，只能退回显示包名。
+      queries 覆盖带启动图标的普通应用，QUERY_ALL_PACKAGES 兜住车机上没有启动图标的应用。
+    -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+    </queries>
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+
     <application
         android:label="@string/app_name"
         android:icon="@mipmap/ic_launcher"

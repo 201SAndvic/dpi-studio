@@ -31,8 +31,8 @@ android {
         //   大改 → 0.2、0.3 …（第二位 +1，并开一个新的小改序列）
         //   小改 → 0.11、0.12 …（小改序列里递增）
         //   永不到 1.0
-        versionCode = 17
-        versionName = "1.0"
+        versionCode = 18
+        versionName = "1.01"
 
         multiDexEnabled = true
         vectorDrawables { useSupportLibrary = true }

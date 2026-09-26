@@ -4,7 +4,7 @@
 为车机、手表与方屏设备调整应用显示密度的 Android 工具
 
 
-[![Version](https://img.shields.io/badge/Version-1.0-orange?style=flat-square)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/Version-1.01-orange?style=flat-square)](CHANGELOG.md)
 [![Platform](https://img.shields.io/badge/Platform-Android%208.0%2B-green?style=flat-square)](https://developer.android.com)
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.4-purple?style=flat-square)](https://kotlinlang.org)
 [![Compose](https://img.shields.io/badge/UI-Jetpack%20Compose-blue?style=flat-square)](https://developer.android.com/jetpack/compose)

@@ -5,6 +5,17 @@
 
 ---
 
+## 1.01
+
+- 修复截图文件名里的应用名显示为包名的问题：Android 11 起有包可见性限制，
+  未声明时 `getApplicationInfo` 会失败并退回包名，现补充 `queries` 与
+  `QUERY_ALL_PACKAGES` 声明
+- 修复副屏截图不带应用名的问题：前台应用探测改为多级解析，
+  优先从 `dumpsys activity activities` 的分屏段落读取当前 Activity，
+  兼容 Android 12 之后 `dumpsys window displays` 不再输出每屏焦点窗口的变化
+- 前台窗口选择改为「占屏面积优先、层级次之」，避免选中角落里的悬浮小窗
+- 主页「屏幕信息」不再重复显示分辨率与密度两行，标题行已有该信息
+
 ## 1.0
 
 **开源首发版本**
